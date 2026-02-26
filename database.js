@@ -8,9 +8,9 @@ const app=express();
 app.use(express.json());//for 505 error we need to do this-->middle ware to convert the data into json
 // let todo = []--->for the data in the js we created a list 
 app.use(cors())
-mongoose.connect('mongodb://localhost:27017/todo_database')
-.then( ()=>console.log("connected"))
-.catch( ()=>console.log("not connected"+err));
+mongoose.connect(process.env.MONGO_URL)
+.then(() => console.log("Connected to MongoDB"))
+.catch((err) => console.log("Not connected:", err));
 const todoschema=new mongoose.Schema({
     title:String,
     description:String
