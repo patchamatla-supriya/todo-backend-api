@@ -23,10 +23,10 @@ app.post('/todo',async(req,res)=>{
         await newtodo.save();
         res.status(200).json(newtodo);
     }
-    catch{
-        console.log("error");
-        res.status(500);
-    }
+    catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+}
     // const {title,description}=req.body;//-->destruction:To bring the data from the req.body
     // const new_todo={
     //     id : todo.length+1,
@@ -42,10 +42,10 @@ app.get('/todo',async(req,res)=>{
         const todo=await todoModel.find()
         res.json(todo);
     }
-    catch{
-        console.log("error");
-        res.status(500);
-    }
+    catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+}
     // res.json(todo)
 })
 app.put('/todo/:id',async(req,res)=>{
@@ -64,10 +64,10 @@ app.put('/todo/:id',async(req,res)=>{
             res.status(404).json({message:"error"})
         }
     }
-    catch{
-        console.log("error");
-        res.status(500);
-    }
+    catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+}
 })
 app.delete('/todo/:id',async(req,res)=>{
     try{
@@ -75,10 +75,10 @@ app.delete('/todo/:id',async(req,res)=>{
     await todoModel.findByIdAndDelete(id);
     res.status(200).end();//res.end()--> for ending the process after the data is deleted
     }
-    catch{
-        console.log("error");
-        res.status(500);
-    }
+    catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+}
 })
 // app.get('/',(req,res)=>{
 //     res.send("working")
