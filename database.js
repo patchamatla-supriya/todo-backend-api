@@ -10,7 +10,7 @@ app.use(express.json());//for 505 error we need to do this-->middle ware to conv
 app.use(cors())
 mongoose.connect(process.env.MONGO_URL)
 .then(() => console.log("Connected to MongoDB"))
-.catch(() => console.log("not connected"+err));
+.catch((err) => console.log("Not connected:", err));
 const todoschema=new mongoose.Schema({
     title:String,
     description:String
