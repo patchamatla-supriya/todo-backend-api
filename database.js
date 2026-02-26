@@ -7,7 +7,11 @@ const app=express();
 
 app.use(express.json());//for 505 error we need to do this-->middle ware to convert the data into json
 // let todo = []--->for the data in the js we created a list 
-app.use(cors())
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: false
+}));
 mongoose.connect(process.env.MONGO_URL)
 .then(() => console.log("Connected to MongoDB"))
 .catch((err) => console.log("Not connected:", err));
